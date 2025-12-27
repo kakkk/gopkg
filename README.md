@@ -1,3 +1,7 @@
 # github.com/kakkk/gopkg
 
 自己封装的一些常用的组件
+
+- `go get github.com/kakkk/gopkg/dlock@latest`
+  - 分布式锁的简单实现
+  - 可基于Redis或数据库（兼容MySQL、PostgreSQL、SQLite）实现
