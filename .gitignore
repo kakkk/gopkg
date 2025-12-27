@@ -1,0 +1,48 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the go build
+/dist/
+/bin/
+/out/
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go module files (if using modules)
+go.sum
+# If using dep, uncomment the following
+# Gopkg.lock
+
+# Local development environment files
+.env
+.env.local
+.env.*.local
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Go test output
+coverage.txt
+coverage.html
+profile.out
+
+# Operating system generated files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+/tmp/
