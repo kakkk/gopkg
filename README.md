@@ -5,3 +5,5 @@
 - `go get github.com/kakkk/gopkg/dlock@latest`
   - 分布式锁的简单实现
   - 可基于Redis或数据库（兼容MySQL、PostgreSQL、SQLite）实现
+- `go get github.com/kakkk/gopkg/requestid@latest`
+  - 往context中添加requestID，用于日志&链路追踪
