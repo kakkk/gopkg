@@ -2,8 +2,9 @@ package requestid
 
 import (
 	"context"
-	"github.com/google/uuid"
 	"strings"
+
+	"github.com/google/uuid"
 )
 
 type ctxKey int
