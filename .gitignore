@@ -15,8 +15,6 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-# Go module files (if using modules)
-go.sum
 # If using dep, uncomment the following
 # Gopkg.lock
 
