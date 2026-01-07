@@ -22,4 +22,12 @@ jobs:
 
     - name: Test
       working-directory: ./${{ matrix.module }}
-      run: go test -v -race ./...
+      run: go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        files: ./${{ matrix.module }}/coverage.txt
+        flags: ${{ matrix.module }}
+        fail_ci_if_error: false
+        token: ${{ secrets.CODECOV_TOKEN }}

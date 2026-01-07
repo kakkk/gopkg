@@ -1,6 +1,7 @@
 # github.com/kakkk/gopkg
 
 ![Test](https://github.com/kakkk/gopkg/actions/workflows/test.yml/badge.svg)
+[![codecov](https://codecov.io/gh/kakkk/gopkg/branch/master/graph/badge.svg)](https://codecov.io/gh/kakkk/gopkg)
 
 自己封装的一些常用的组件
 
