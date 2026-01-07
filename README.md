@@ -11,3 +11,6 @@
   - `logrus`的简单封装
   - 使用`lumberjack`实现日志分割
   - 自动获取`kakkk/gopkg/requestid`的requestID
+- `go get github.com/kakkk/gopkg/gormlogger@latest`
+  - 实现 gorm logger
+  - 基于`github.com/kakkk/gopkg/logger`
