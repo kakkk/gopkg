@@ -7,11 +7,24 @@ on:
     branches: [ "main", "master" ]
 
 jobs:
+  list-modules:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: set-matrix
+        run: |
+          # Find all directories containing go.mod (excluding root), remove ./ prefix
+          MODULES=$(find . -mindepth 2 -maxdepth 2 -name go.mod | xargs dirname | sed 's|^\]./||' | jq -R -s -c 'split("\n")[:-1]')
+          echo "Found modules: $MODULES"
+          echo "matrix=$MODULES" >> $GITHUB_OUTPUT
+
   test:
+    needs: list-modules
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        module: [dlock, gormlogger, hertzlogger, logger, requestid]
+      matrix: ${{ fromJson(needs.list-modules.outputs.matrix) }}
     steps:
     - uses: actions/checkout@v4
 
