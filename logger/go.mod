@@ -3,7 +3,7 @@ module github.com/kakkk/gopkg/logger
 go 1.24.0
 
 require (
-	github.com/kakkk/gopkg/requestid v1.0.2
+	github.com/kakkk/gopkg/requestid v1.0.3
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.7.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
