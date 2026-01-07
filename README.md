@@ -1,5 +1,7 @@
 # github.com/kakkk/gopkg
 
+![Test](https://github.com/kakkk/gopkg/actions/workflows/test.yml/badge.svg)
+
 自己封装的一些常用的组件
 
 - `go get github.com/kakkk/gopkg/dlock@latest`
