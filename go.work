@@ -3,6 +3,7 @@ go 1.25.5
 use (
 	./dlock
 	./gormlogger
+	./hertzlogger
 	./logger
 	./requestid
 )

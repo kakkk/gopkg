@@ -14,3 +14,6 @@
 - `go get github.com/kakkk/gopkg/gormlogger@latest`
   - 实现 gorm logger
   - 基于`github.com/kakkk/gopkg/logger`
+- `go get github.com/kakkk/gopkg/hertzlogger@latest`
+  - 实现 hertz logger
+  - 基于`github.com/kakkk/gopkg/logger`
