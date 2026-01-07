@@ -3,6 +3,7 @@ package dlock
 import (
 	"context"
 	"fmt"
+	"sync"
 	"testing"
 	"time"
 
@@ -441,9 +442,12 @@ func TestDBLock(t *testing.T) {
 		// 并发获取锁
 		successCh := make(chan Lock, 10)
 		errorCh := make(chan error, 10)
+		var wg sync.WaitGroup
 
 		for i := 0; i < 10; i++ {
+			wg.Add(1)
 			go func(id int) {
+				defer wg.Done()
 				lock, err := locker.Acquire(ctx, key, 10*time.Second)
 				if err != nil {
 					errorCh <- err
@@ -454,24 +458,19 @@ func TestDBLock(t *testing.T) {
 		}
 
 		// 等待所有goroutine完成
-		time.Sleep(500 * time.Millisecond)
+		wg.Wait()
+		close(successCh)
+		close(errorCh)
 
 		// 应该只有一个成功，其他都失败
 		var successCount int
 		var errorCount int
 
-		select {
-		case lock := <-successCh:
+		for lock := range successCh {
 			successCount++
-			// 释放锁
 			lock.Unlock(ctx)
-		default:
 		}
 
-		close(successCh)
-		close(errorCh)
-
-		// 统计错误
 		for range errorCh {
 			errorCount++
 		}
