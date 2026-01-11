@@ -6,4 +6,5 @@ use (
 	./hertzlogger
 	./logger
 	./requestid
+	./safego
 )

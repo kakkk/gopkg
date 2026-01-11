@@ -20,3 +20,5 @@
 - `go get github.com/kakkk/gopkg/hertzlogger@latest`
   - 实现 hertz logger
   - 基于`github.com/kakkk/gopkg/logger`
+- `go get github.com/kakkk/gopkg/safego@latest`
+  - 安全使用goroutine，自动recover，打印错误日志及堆栈
