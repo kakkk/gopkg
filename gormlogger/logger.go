@@ -3,11 +3,13 @@ package gormlogger
 import (
 	"context"
 	"errors"
+	"fmt"
+	"runtime"
+	"strings"
 	"time"
 
 	"gorm.io/gorm"
 	gLogger "gorm.io/gorm/logger"
-	"gorm.io/gorm/utils"
 
 	"github.com/kakkk/gopkg/logger"
 )
@@ -59,7 +61,7 @@ func (l *gormLogger) Trace(ctx context.Context, begin time.Time, fc func() (stri
 
 	elapsed := time.Since(begin)
 	sql, rows := fc()
-	src := utils.FileWithLineNum()
+	src := fileWithLineNum()
 
 	if err != nil && (!errors.Is(err, gorm.ErrRecordNotFound) || !l.cfg.ignoreRecordNotFoundError) {
 		if l.cfg.logLevel >= gLogger.Error {
@@ -76,4 +78,14 @@ func (l *gormLogger) Trace(ctx context.Context, begin time.Time, fc func() (stri
 	if l.cfg.logLevel == gLogger.Info {
 		logger.Ctx(ctx).Infof("%s %s [%s] [rows:%d]", src, sql, elapsed, rows)
 	}
+}
+
+func fileWithLineNum() string {
+	for i := 2; i < 15; i++ {
+		_, file, line, ok := runtime.Caller(i)
+		if ok && (!strings.Contains(file, "gorm.io/gorm") && !strings.Contains(file, "gormlogger/logger.go")) {
+			return fmt.Sprintf("%s:%d", file, line)
+		}
+	}
+	return ""
 }

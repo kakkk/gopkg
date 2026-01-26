@@ -197,3 +197,28 @@ func TestInfoWarnError(t *testing.T) {
 	assert.Contains(t, content, "error message")
 	assert.Contains(t, strings.ToLower(content), "error")
 }
+
+func TestSourceLocation(t *testing.T) {
+	// Clean log before starting
+	readAndClearLog()
+
+	l := New()
+	l = l.LogMode(gLogger.Info)
+	ctx := context.Background()
+
+	// Call Trace.
+	l.Trace(ctx, time.Now(), func() (string, int64) {
+		return "SELECT 1", 1
+	}, nil)
+
+	// Give it a moment to flush
+	time.Sleep(10 * time.Millisecond)
+
+	logContent := readAndClearLog()
+	t.Logf("Log content: %s", logContent)
+
+	// We expect "logger_test.go" to appear in the log because the call is coming from this file.
+	// We expect NOT to see "logger.go" as the source (which would mean it picked up the library file).
+	assert.Contains(t, logContent, "logger_test.go", "Should contain the caller filename")
+	assert.NotContains(t, logContent, "gormlogger/logger.go", "Should NOT contain the logger library filename as source")
+}
