@@ -7,8 +7,8 @@ github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
 github.com/jinzhu/now v1.1.5/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
-github.com/kakkk/gopkg/logger v1.0.1 h1:NlWwbQferIx7cL9pdDIDf9rQ5Vt4LJVgGJaSFNO60Eg=
-github.com/kakkk/gopkg/logger v1.0.1/go.mod h1:k10aTbRqDrn6YQHxRPC+kcR9GNtxqWb0+VziDL8acJ4=
+github.com/kakkk/gopkg/logger v1.0.2 h1:pDDX3Mp+h3dsUsgzVfTarkJ4xr0aaPMy0Q22y1rh0w8=
+github.com/kakkk/gopkg/logger v1.0.2/go.mod h1:k10aTbRqDrn6YQHxRPC+kcR9GNtxqWb0+VziDL8acJ4=
 github.com/kakkk/gopkg/requestid v1.0.3 h1:iLd+JWMfKhz9mP9H29lOw/iX8y+Lfm/cK28SMvPZGZo=
 github.com/kakkk/gopkg/requestid v1.0.3/go.mod h1:RQjTrN/OC83ADuvMPnqjOQ9nwr34zK8IVHPvgpyO4wM=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

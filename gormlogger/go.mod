@@ -3,7 +3,7 @@ module github.com/kakkk/gopkg/gormlogger
 go 1.24.0
 
 require (
-	github.com/kakkk/gopkg/logger v1.0.1
+	github.com/kakkk/gopkg/logger v1.0.2
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.11.1
 	gorm.io/gorm v1.31.1
