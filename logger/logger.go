@@ -45,6 +45,7 @@ func createFallbackLogger() *logrus.Logger {
 	logger := logrus.New()
 	logger.SetLevel(logrus.DebugLevel)
 	logger.SetOutput(os.Stdout)
+	logger.AddHook(newCallerHook())
 	logger.SetFormatter(&logrus.TextFormatter{
 		FullTimestamp:   true,
 		TimestampFormat: "2006-01-02 15:04:05",
@@ -102,6 +103,10 @@ type config struct {
 	// 默认: true
 	// 注意: 当fileName为空时，此字段会被忽略，始终输出到控制台
 	withConsole bool
+
+	// showLine 是否在日志中包含文件名和行号
+	// 默认: true
+	showLine bool
 }
 
 // Option 配置选项函数类型
@@ -118,6 +123,7 @@ func defaultConfig() *config {
 		compress:    false,
 		jsonFormat:  false,
 		withConsole: true,
+		showLine:    true,
 	}
 }
 
@@ -170,6 +176,11 @@ func newLogger(options ...Option) (*logrus.Logger, error) {
 
 	// context hook
 	logger.AddHook(&contextHook{})
+
+	// caller hook
+	if cfg.showLine {
+		logger.AddHook(newCallerHook())
+	}
 
 	// 如果没有文件名，只输出到控制台
 	if cfg.fileName == "" {
@@ -522,5 +533,27 @@ func WithMaxAge(maxAge int) Option {
 func WithCompress(compress bool) Option {
 	return func(c *config) {
 		c.compress = compress
+	}
+}
+
+// WithLineNumber 设置是否在日志中包含文件名和行号
+//
+// 参数:
+//
+//	show - true: 显示文件名和行号（默认）
+//	       false: 不显示
+//
+// 特点:
+//   - 开启后，日志Fields中会包含 "file" 字段
+//   - 格式: "/absolute/path/to/file.go:line"
+//   - 路径为文件的完整绝对路径
+//
+// 示例:
+//
+//	WithLineNumber(true)  // 显示行号
+//	WithLineNumber(false) // 禁用显示行号
+func WithLineNumber(show bool) Option {
+	return func(c *config) {
+		c.showLine = show
 	}
 }
