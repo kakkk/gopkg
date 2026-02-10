@@ -9,11 +9,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kakkk/gopkg/logger"
 	"github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 	"gorm.io/gorm"
 	gLogger "gorm.io/gorm/logger"
+
+	"github.com/kakkk/gopkg/logger"
 )
 
 const testLogFile = "gorm_test.log"
@@ -25,6 +26,7 @@ func TestMain(m *testing.M) {
 		logger.WithConsoleOutput(false),
 		logger.WithJSONFormat(false),
 		logger.WithLevel(logrus.DebugLevel), // Ensure we capture everything
+		logger.WithLineNumber(false),
 	)
 
 	code := m.Run()
