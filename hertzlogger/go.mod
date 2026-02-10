@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/cloudwego/hertz v0.10.2
-	github.com/kakkk/gopkg/logger v1.0.1
+	github.com/kakkk/gopkg/logger v1.0.2
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.9.0
 )
